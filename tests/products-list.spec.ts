@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("create delete product list", async ({ page }) => {
+  await page.locator("body").click();
   await page.goto("/");
   await page.getByPlaceholder("name...").click();
   await page.getByPlaceholder("name...").fill("Test product");
@@ -16,5 +17,5 @@ test("create delete product list", async ({ page }) => {
 
   await expect(
     page.getByText("Test productTest descriptionDelete"),
-  ).toBeVisible();
+  ).not.toBeVisible();
 });
