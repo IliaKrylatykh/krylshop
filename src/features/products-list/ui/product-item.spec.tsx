@@ -7,7 +7,11 @@ describe("product item", () => {
     const onDelete = jest.fn();
     render(
       <ProductItem
-        product={{ id: "1", name: "name", description: "description" }}
+        product={{
+          id: "1",
+          name: "Test name",
+          description: "Test description",
+        }}
         onDelete={onDelete}
       />,
     );
