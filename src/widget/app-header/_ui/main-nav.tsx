@@ -7,13 +7,13 @@ export function MainNav() {
         className="transition-colors hover:text-foreground/80 text-foreground/60"
         href="/map"
       >
-        Карта
+        Link 1
       </Link>
       <Link
         className="transition-colors hover:text-foreground/80 text-foreground/60"
         href="/learn"
       >
-        Обучение
+        Link 2
       </Link>
     </nav>
   );
