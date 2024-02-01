@@ -1,5 +1,5 @@
 // import { UpdateProfileForm } from "@/features/update-profile/update-profile-form";
-import { getAppSessionServer } from "@/entities/user/get-app-session.server";
+import { getAppSessionServer } from "@/entities/user/session.server";
 import { redirect } from "next/navigation";
 
 export default async function NewUserPage({

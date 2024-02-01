@@ -11,11 +11,11 @@ import {
 import { LogOut, User } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { SignInButton } from "@/features/auth/sign-in-button";
-import { useAppSession, useRole } from "@/entities/user/session.client";
+import { useAppSession, useRole } from "@/entities/user/session";
+import { ProfileAvatar, getProfileDisplayName } from "@/entities/user/profile";
 
 export function Profile() {
   const session = useAppSession();
@@ -38,17 +38,14 @@ export function Profile() {
           variant="ghost"
           className="p-px rounded-full self-center h-8 w-8"
         >
-          <Avatar className="w-8 h-8">
-            <AvatarImage src={session.data?.user.image ?? undefined} />
-            <AvatarFallback>AC</AvatarFallback>
-          </Avatar>
+          <ProfileAvatar profile={user} className="w-8 h-8" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-2 ">
         <DropdownMenuLabel>
-          <p>Мой аккаунт</p>
+          <p>My account</p>
           <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
-            {user?.name}
+            {user ? getProfileDisplayName(user) : undefined}
           </p>
         </DropdownMenuLabel>
         <DropdownMenuGroup></DropdownMenuGroup>
@@ -57,7 +54,7 @@ export function Profile() {
           <DropdownMenuItem asChild>
             <Link href={`/profile/1`}>
               <User className="mr-2 h-4 w-4" />
-              <span>Профиль</span>
+              <span>Profile</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -65,7 +62,7 @@ export function Profile() {
             onClick={() => signOut()}
           >
             <LogOut className="mr-2 h-4 w-4" />
-            <span>Выход</span>
+            <span>Exit</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
