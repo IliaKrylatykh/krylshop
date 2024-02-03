@@ -51,7 +51,7 @@ export function EmailSignInForm() {
             {emailSignIn.isPending && (
               <Spinner className="mr-2 h-4 w-4 " aria-label="Loading" />
             )}
-            Войти через Email
+            Login via Email
           </Button>
         </div>
       </form>
