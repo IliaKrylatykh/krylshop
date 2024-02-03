@@ -33,7 +33,7 @@ jobs:
           user: ${{ secrets.PRODUCTION_SSH_USERNAME }}
           private_key: ${{ secrets.PRODUCTION_SSH_PRIVATE_KEY }}
           host_fingerprint: ${{ secrets.PRODUCTION_SSH_FINGERPRINT }}
-          command: source ~/.nvm/nvm.sh; echo 'Hello world'
+          command: source ~/.nvm/nvm.sh; ~/deploy.sh
   e2e:
     needs: deploy
     timeout-minutes: 60
