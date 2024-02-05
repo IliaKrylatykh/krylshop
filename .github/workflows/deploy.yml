@@ -25,11 +25,6 @@ jobs:
       group: krylshop
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v4
-      - name: Reset local changes
-        run: |
-          git reset --hard
-          git clean -fd
       - name: SSH Command
         uses: D3rHase/ssh-command-action@v0.2.2
         with:
