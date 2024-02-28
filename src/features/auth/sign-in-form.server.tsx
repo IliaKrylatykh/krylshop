@@ -23,10 +23,11 @@ export async function SignInForm({ className }: { className?: string }) {
       ) : (
         <EmailSignInForm />
       )}
-      <Divider />
+      {/* Github OAuth */}
+      {/* <Divider />
       {oauthProviders.map((provider) => (
         <ProviderButton key={provider.id} provider={provider} />
-      ))}
+      ))} */}
     </div>
   );
 }

@@ -54,11 +54,11 @@ export const nextAuthConfig: AuthOptions = {
       },
       from: privateConfig.EMAIL_FROM,
     }),
-    privateConfig.GITHUB_ID &&
-      privateConfig.GITHUB_SECRET &&
-      GithubProvider({
-        clientId: privateConfig.GITHUB_ID,
-        clientSecret: privateConfig.GITHUB_SECRET,
-      }),
+    // privateConfig.GITHUB_ID &&
+    //   privateConfig.GITHUB_SECRET &&
+    //   GithubProvider({
+    //     clientId: privateConfig.GITHUB_ID,
+    //     clientSecret: privateConfig.GITHUB_SECRET,
+    //   }),
   ]),
 };
