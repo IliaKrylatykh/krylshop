@@ -1,5 +1,7 @@
 "use client";
 
+import { ROLES } from "@/entities/user/_domain/types";
+import { useAppSession } from "@/entities/user/session";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -9,6 +11,9 @@ import {
   CardTitle,
 } from "@/shared/ui/card";
 import { useTransition } from "react";
+import TestImage from "@/shared/images/test.jpg";
+import Image from "next/image";
+import { cn } from "@/shared/ui/utils";
 
 export function ProductItem({
   product,
@@ -17,6 +22,7 @@ export function ProductItem({
   product: ProductListElement;
   onDelete: () => Promise<void>;
 }) {
+  const session = useAppSession();
   const [isDeleteTransition, startDeleteTransition] = useTransition();
 
   const handleDelete = () => {
@@ -25,16 +31,29 @@ export function ProductItem({
     });
   };
 
+  const role = session.data?.user.role;
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>{product.name}</CardTitle>
-        <CardDescription>{product.description}</CardDescription>
       </CardHeader>
+      <div className="relative overflow-hidden rounded-md flex-none my-4  mx-auto w-3/4  h-[250px]">
+        <Image
+          src={TestImage}
+          alt="test"
+          layout="fill"
+          objectFit="cover"
+          className={cn("transition-all hover:scale-105")}
+        />
+      </div>
       <CardFooter>
-        <Button disabled={isDeleteTransition} onClick={handleDelete}>
-          Delete
-        </Button>
+        <CardDescription>{product.description}</CardDescription>
+        {role === ROLES.ADMIN && (
+          <Button disabled={isDeleteTransition} onClick={handleDelete}>
+            Delete
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

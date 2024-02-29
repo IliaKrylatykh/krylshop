@@ -8,14 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
-import { LogOut, User } from "lucide-react";
+import { LogOut, PackagePlus, User } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { SignInButton } from "@/features/auth/sign-in-button";
-import { useAppSession, useRole } from "@/entities/user/session";
+import { useAppSession } from "@/entities/user/session";
 import { ProfileAvatar, getProfileDisplayName } from "@/entities/user/profile";
+import { ROLES } from "@/entities/user/_domain/types";
 
 export function Profile() {
   const session = useAppSession();
@@ -51,6 +52,14 @@ export function Profile() {
         <DropdownMenuGroup></DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          {user?.role === ROLES.ADMIN && (
+            <DropdownMenuItem asChild>
+              <Link href={`/add-product`}>
+                <PackagePlus className="mr-2 h-4 w-4" />
+                <span>Add brooch</span>
+              </Link>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem asChild>
             <Link href={`/profile/${user?.id}`}>
               <User className="mr-2 h-4 w-4" />

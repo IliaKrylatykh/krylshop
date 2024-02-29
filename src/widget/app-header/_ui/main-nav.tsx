@@ -5,15 +5,21 @@ export function MainNav() {
     <nav className="flex items-start md:items-center gap-6 text-sm font-medium flex-col md:flex-row ">
       <Link
         className="transition-colors hover:text-foreground/80 text-foreground/60"
-        href="/map"
+        href="/products"
       >
-        Link 1
+        Brooches
       </Link>
       <Link
         className="transition-colors hover:text-foreground/80 text-foreground/60"
-        href="/learn"
+        href="/categories"
       >
-        Link 2
+        Categories
+      </Link>
+      <Link
+        className="transition-colors hover:text-foreground/80 text-foreground/60"
+        href="/about"
+      >
+        About
       </Link>
     </nav>
   );
