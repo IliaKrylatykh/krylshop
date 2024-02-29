@@ -4,7 +4,7 @@ import BirdImage from "@/shared/images/categories-bird.jpg";
 import AnimalImage from "@/shared/images/categories-animal.jpg";
 import FlowerImage from "@/shared/images/categories-flower.jpg";
 
-export default function AboutPage() {
+export default function CategoriesPage() {
   return (
     <main className="py-14 container">
       <h1 className="mb-12 text-6xl">Categories</h1>
