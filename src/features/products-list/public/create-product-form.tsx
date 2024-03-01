@@ -13,15 +13,10 @@ import { Textarea } from "@/shared/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { createProductAction } from "../actions";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/ui/utils";
-
-const createProductFormSchema = z.object({
-  name: z.string(),
-  description: z.string(),
-});
+import { productSchema } from "@/entities/product/product";
 
 export function CreateProductForm({
   className,
@@ -32,10 +27,12 @@ export function CreateProductForm({
 }) {
   const [isCreateTransition, startCreateTransition] = useTransition();
   const form = useForm({
-    resolver: zodResolver(createProductFormSchema),
+    resolver: zodResolver(productSchema),
     defaultValues: {
       name: "",
       description: "",
+      price: "",
+      images: [],
     },
   });
 
@@ -70,6 +67,19 @@ export function CreateProductForm({
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Textarea placeholder="description..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="price"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Price</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Price..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

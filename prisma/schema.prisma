@@ -7,12 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  id          String @id @default(cuid())
-  name        String
-  description String
-}
-
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -57,6 +51,16 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Product {
+  id        String @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  name        String
+  description String
+  price       String
+  images      String[]
 }
 
 enum ROLE {

@@ -19,7 +19,7 @@ export function ProductItem({
   product,
   onDelete,
 }: {
-  product: ProductListElement;
+  product: Product;
   onDelete: () => Promise<void>;
 }) {
   const session = useAppSession();
@@ -49,6 +49,8 @@ export function ProductItem({
       </div>
       <CardFooter>
         <CardDescription>{product.description}</CardDescription>
+        <CardDescription>{product.price}</CardDescription>
+        <CardDescription>{product.createdAt.toUTCString()}</CardDescription>
         {role === ROLES.ADMIN && (
           <Button disabled={isDeleteTransition} onClick={handleDelete}>
             Delete

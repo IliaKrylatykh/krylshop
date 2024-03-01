@@ -3,18 +3,16 @@ import { cache } from "react";
 
 class ProductsRepository {
   getProductsList = cache(
-    (): Promise<ProductListElement[]> => dbClient.product.findMany(),
+    (): Promise<Product[]> => dbClient.product.findMany(),
   );
 
-  createProductElement = (
-    command: CreateProductListElementCommand,
-  ): Promise<ProductListElement> => {
+  createProductElement = (command: CreateProductCommand): Promise<Product> => {
     return dbClient.product.create({
       data: command,
     });
   };
 
-  deleteProductElement = (command: DeleteProductListElementCommand) => {
+  deleteProductElement = (command: DeleteProductCommand) => {
     return dbClient.product.delete({
       where: {
         id: command.id,

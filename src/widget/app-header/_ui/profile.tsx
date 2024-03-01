@@ -16,7 +16,7 @@ import { Skeleton } from "@/shared/ui/skeleton";
 import { SignInButton } from "@/features/auth/sign-in-button";
 import { useAppSession } from "@/entities/user/session";
 import { ProfileAvatar, getProfileDisplayName } from "@/entities/user/profile";
-import { ROLES } from "@/entities/user/_domain/types";
+import { ROLES } from "@/entities/user/user";
 
 export function Profile() {
   const session = useAppSession();
