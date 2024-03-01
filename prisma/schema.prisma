@@ -59,7 +59,7 @@ model Product {
 
   name        String
   description String
-  price       String
+  price       String @default("")
   images      String[]
 }
 
