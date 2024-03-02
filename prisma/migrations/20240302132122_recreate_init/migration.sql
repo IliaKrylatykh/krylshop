@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "ROLE" AS ENUM ('ADMIN', 'USER');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
@@ -30,6 +33,7 @@ CREATE TABLE "Session" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "role" "ROLE" NOT NULL DEFAULT 'USER',
     "name" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
@@ -42,6 +46,18 @@ CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "price" TEXT NOT NULL DEFAULT '',
+    "images" TEXT[],
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
