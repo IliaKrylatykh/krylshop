@@ -4,6 +4,7 @@ type Product = {
   id: string;
   createdAt: Date;
   name: string;
+  slug: string;
   description: string;
   price: string;
   images: string[];
@@ -11,6 +12,7 @@ type Product = {
 
 type CreateProductCommand = {
   name: string;
+  slug: string;
   description: string;
   price: string;
   images: string[];

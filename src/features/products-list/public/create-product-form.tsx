@@ -30,6 +30,7 @@ export function CreateProductForm({
     resolver: zodResolver(productSchema),
     defaultValues: {
       name: "",
+      slug: "",
       description: "",
       price: "",
       images: [],
