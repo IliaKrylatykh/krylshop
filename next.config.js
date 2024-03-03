@@ -11,6 +11,9 @@ const nextConfig = {
       destination: `${process.env.S3_ENDPOINT}/:path*`,
     },
   ],
+  images: {
+    domains: ["localhost:9000"],
+  },
 };
 
 module.exports = nextConfig;

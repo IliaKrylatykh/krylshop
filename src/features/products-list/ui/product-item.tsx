@@ -11,15 +11,14 @@ import {
   CardTitle,
 } from "@/shared/ui/card";
 import { useTransition } from "react";
-import TestImage from "@/shared/images/test.jpg";
 import Image from "next/image";
-import { cn } from "@/shared/ui/utils";
+import { ProductEntity } from "@/entities/product/_domain/entities";
 
 export function ProductItem({
   product,
   onDelete,
 }: {
-  product: Product;
+  product: ProductEntity;
   onDelete: () => Promise<void>;
 }) {
   const session = useAppSession();
@@ -38,15 +37,14 @@ export function ProductItem({
       <CardHeader>
         <CardTitle>{product.name}</CardTitle>
       </CardHeader>
-      <div className="relative overflow-hidden rounded-md flex-none my-4  mx-auto w-3/4  h-[250px]">
-        <Image
-          src={TestImage}
-          alt="test"
-          layout="fill"
-          objectFit="cover"
-          className={cn("transition-all hover:scale-105")}
-        />
-      </div>
+
+      <Image
+        src={product.images}
+        alt="Product image"
+        width={600}
+        height={400}
+      />
+
       <CardFooter>
         <CardDescription>{product.description}</CardDescription>
         <CardDescription>{product.price}</CardDescription>

@@ -1,18 +1,19 @@
 import { revalidatePath } from "next/cache";
-import { productsRepository } from "../products.repository";
 import { ProductItem } from "../ui/product-item";
+import { productRepository } from "@/entities/product/product";
+import Image from "next/image";
 
 export async function ProductsList({
   revalidatePagePath,
 }: {
   revalidatePagePath: string;
 }) {
-  const productsList = await productsRepository.getProductsList();
+  const productsList = await productRepository.getProductsList();
 
   const handleDeleteAction = async (productId: string) => {
     "use server";
 
-    await productsRepository.deleteProductElement({ id: productId });
+    await productRepository.deleteProductElement({ id: productId });
 
     revalidatePath(revalidatePagePath);
   };

@@ -64,7 +64,7 @@ model Product {
   slug        String
   description String
   price       String
-  images      String[]
+  images      String
 
   User       User?     @relation(fields: [userId], references: [id])
   userId     String?

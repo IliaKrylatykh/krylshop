@@ -17,6 +17,7 @@ import { createProductAction } from "../actions";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/ui/utils";
 import { productSchema } from "@/entities/product/product";
+import { ProductImageField } from "../ui/image-field";
 
 export function CreateProductForm({
   className,
@@ -33,7 +34,7 @@ export function CreateProductForm({
       slug: "",
       description: "",
       price: "",
-      images: [],
+      images: "",
     },
   });
 
@@ -81,6 +82,24 @@ export function CreateProductForm({
               <FormLabel>Price</FormLabel>
               <FormControl>
                 <Textarea placeholder="Price..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="images"
+          disabled
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Avatar</FormLabel>
+              <FormControl>
+                <ProductImageField
+                  value={field.value}
+                  onChange={field.onChange}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

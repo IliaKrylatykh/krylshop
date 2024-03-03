@@ -1,12 +1,13 @@
 "use server";
 
+import { CreateProductCommand } from "@/entities/product/_domain/entities";
+import { productRepository } from "@/entities/product/product";
 import { revalidatePath } from "next/cache";
-import { productsRepository } from "./products.repository";
 
 export const createProductAction = async (
   command: CreateProductCommand,
   revalidatePagePath: string,
 ) => {
-  await productsRepository.createProductElement(command);
+  await productRepository.createProductElement(command);
   revalidatePath(revalidatePagePath);
 };
