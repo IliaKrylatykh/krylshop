@@ -4,13 +4,7 @@ import Image from "next/image";
 export function Logo() {
   return (
     <div>
-      <Image
-        src={AboutBird}
-        alt="about-bird-image"
-        height={400}
-        width={600}
-        priority
-      />
+      <Image src={AboutBird} alt="about-bird-image" height={400} width={600} />
     </div>
   );
 }
