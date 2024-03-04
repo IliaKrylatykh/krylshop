@@ -13,6 +13,7 @@ import {
 import { useTransition } from "react";
 import Image from "next/image";
 import { ProductEntity } from "@/entities/product/_domain/entities";
+import Link from "next/link";
 
 export function ProductItem({
   product,
@@ -57,6 +58,12 @@ export function ProductItem({
       </CardDescription>
 
       <CardFooter className="px-6 py-4">
+        <Link
+          className="transition-colors hover:text-foreground/80 text-foreground/60"
+          href={`/products/${product.id}`}
+        >
+          Details
+        </Link>
         {role === ROLES.ADMIN && (
           <Button
             className={`inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ${

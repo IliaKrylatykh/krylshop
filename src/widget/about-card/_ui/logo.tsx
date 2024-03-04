@@ -3,12 +3,13 @@ import Image from "next/image";
 
 export function Logo() {
   return (
-    <div className="relative w-full h-64">
+    <div>
       <Image
         src={AboutBird}
         alt="about-bird-image"
-        layout="fill"
-        objectFit="cover"
+        height={400}
+        width={600}
+        priority
       />
     </div>
   );

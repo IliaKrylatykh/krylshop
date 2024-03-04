@@ -3,6 +3,7 @@ import {
   CreateProductCommand,
   DeleteProductCommand,
   ProductEntity,
+  ProductId,
 } from "../_domain/entities";
 import { dbClient } from "@/shared/lib/db";
 
@@ -10,6 +11,12 @@ export class ProductRepository {
   getProductsList = cache(
     (): Promise<ProductEntity[]> => dbClient.product.findMany(),
   );
+
+  getProductById = (productId: ProductId): Promise<ProductEntity | null> => {
+    return dbClient.product.findUnique({
+      where: { id: productId },
+    });
+  };
 
   createProductElement = (
     command: CreateProductCommand,

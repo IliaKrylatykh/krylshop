@@ -1,7 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { ProductItem } from "../ui/product-item";
 import { productRepository } from "@/entities/product/product";
-import Image from "next/image";
 
 export async function ProductsList({
   revalidatePagePath,
