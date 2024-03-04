@@ -33,24 +33,38 @@ export function ProductItem({
   const role = session.data?.user.role;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{product.name}</CardTitle>
+    <Card className="max-w-sm rounded overflow-hidden shadow-lg my-4">
+      <CardHeader className="px-6 py-4">
+        <CardTitle className="font-bold text-xl mb-2">{product.name}</CardTitle>
       </CardHeader>
 
-      <Image
-        src={product.images}
-        alt="Product image"
-        width={600}
-        height={400}
-      />
+      <div className="relative overflow-hidden w-full">
+        <Image
+          src={product.images}
+          alt="Product image"
+          width={600}
+          height={400}
+          className="w-full object-cover h-48"
+        />
+        <div className="absolute bottom-0 right-0 p-4 bg-black bg-opacity-50">
+          <p className="text-white">{"$" + product.price}</p>
+        </div>
+      </div>
+      <CardDescription className="text-base m-4">
+        {product.description.length > 300
+          ? `${product.description.substring(0, 200)}...`
+          : product.description}
+      </CardDescription>
 
-      <CardFooter>
-        <CardDescription>{product.description}</CardDescription>
-        <CardDescription>{product.price}</CardDescription>
-        <CardDescription>{product.createdAt.toUTCString()}</CardDescription>
+      <CardFooter className="px-6 py-4">
         {role === ROLES.ADMIN && (
-          <Button disabled={isDeleteTransition} onClick={handleDelete}>
+          <Button
+            className={`inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ${
+              isDeleteTransition ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={isDeleteTransition}
+            onClick={handleDelete}
+          >
             Delete
           </Button>
         )}
