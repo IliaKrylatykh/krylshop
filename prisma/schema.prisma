@@ -66,13 +66,13 @@ model Product {
   price       String
   images      String
 
-  User       User?     @relation(fields: [userId], references: [id])
-  userId     String?
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     String
 
-  Category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String
   
-  Review     Review[]
+  reviews     Review[]
 }
 
 model Category {
@@ -81,6 +81,7 @@ model Category {
 
   name String @unique
   slug String @unique
+  image String
 
   products Product[]
 }
@@ -89,7 +90,7 @@ model Review {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
-  rating Int
+  rating String
   text   String
 
   user   User   @relation(fields: [userId], references: [id])

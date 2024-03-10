@@ -1,6 +1,6 @@
 import { Description } from "./_ui/description";
 import { Header } from "./_ui/header";
-import { Layout } from "./_ui/layout";
+import { Layout } from "../category-list/_ui/layout";
 import { Logo } from "./_ui/logo";
 import { SocialMedia } from "./_ui/social-media";
 

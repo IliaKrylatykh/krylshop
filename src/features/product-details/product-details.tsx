@@ -1,22 +1,36 @@
 import { ProductId, productRepository } from "@/entities/product/product";
-import { useQuery } from "@tanstack/react-query";
+import { dbClient } from "@/shared/lib/db";
+import Image from "next/image";
+import { CreateProductForm } from "./create-review-form";
 
 export async function ProductDetails({ productId }: { productId: ProductId }) {
-  // const query = useQuery({
-  //   queryFn: () =>
-  //     productRepository.getProductById("cltcn75s80000u6s4fyjt755r"),
-  //   queryKey: ["product", productId],
+  // const productQuery = useQuery({
+  //   queryKey: ["products", productId],
+  //   queryFn: () => productRepository.getProductById(productId),
   // });
 
-  // const productsList = await productRepository.getProductsList();
+  const product = await dbClient.product.findUniqueOrThrow({
+    where: { id: productId },
+  });
 
-  // console.log(productsList);
-
+  const productReviews = await dbClient.review.findMany();
+  console.log(product);
   return (
     <div>
-      hello
-      {/* <h1>{query.data?.id}</h1>
-      <h1>{query.data?.name}</h1> */}
+      <h1>{product.id}</h1>
+      <h1>{product.name}</h1>
+      <h1>{product.description}</h1>
+      <Image
+        src={product.images}
+        alt="Product image"
+        width={600}
+        height={600}
+        className="w-full object-cover h-48"
+      />
+      <CreateProductForm
+        revalidatePagePath={`/products/${product.id}`}
+        className="max-w-[300px] mb-10"
+      />
     </div>
   );
 }

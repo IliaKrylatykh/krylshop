@@ -12,11 +12,12 @@ export class ProductRepository {
     (): Promise<ProductEntity[]> => dbClient.product.findMany(),
   );
 
-  getProductById = (productId: ProductId): Promise<ProductEntity | null> => {
-    return dbClient.product.findUnique({
-      where: { id: productId },
-    });
-  };
+  getProductById = cache(
+    (productId: ProductId): Promise<ProductEntity> =>
+      dbClient.product.findUniqueOrThrow({
+        where: { id: productId },
+      }),
+  );
 
   createProductElement = (
     command: CreateProductCommand,
